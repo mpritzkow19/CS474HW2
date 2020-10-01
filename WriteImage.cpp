@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <stdlib.h>
+#include <stdlib>
 
 #include "image.h"
 
