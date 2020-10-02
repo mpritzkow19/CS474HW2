@@ -1,8 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include <stdlib>
+//#include <stdlib>
 
 #include "image.h"
+using namespace std;
 
 int writeImage(char fname[], ImageType& image)
 {

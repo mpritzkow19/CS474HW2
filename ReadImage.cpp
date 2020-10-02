@@ -1,8 +1,10 @@
 #include <iostream>
 #include <fstream>
-#include <stdlib>
+//#include <stdlib>
 
 #include "image.h"
+
+using namespace std;
 
 int readImage(char fname[], ImageType& image)
 {
