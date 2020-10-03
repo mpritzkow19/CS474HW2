@@ -51,19 +51,24 @@ int columnCount = spResolution;
 int pos = 0;
 
   for(i=0; i<N; i++){
-    for(j=0; j<M; j++) {
+    image.setPixelVal(i, j, sampleData[pos]);
 
+   if(columnCount ==0){
+     columnCount = spResolution;
+     //pos++;
+   }
+   columnCount--;
+
+    for(j=0; j<M; j++) {
       image.setPixelVal(i, j, sampleData[pos]);
 
-     if(rowCount ==0 && columnCount == 0){
+     if(rowCount ==0){
        rowCount = spResolution;
-       columnCount = spResolution;
       pos++;
      }
      rowCount--;
 
     }
-    columnCount--;
   }
 
  // threshold image
