@@ -13,6 +13,6 @@ image.o:	image.h image.cpp
 	g++ -c $(CFLAGS) image.cpp
 
 all:	image.h image.o ReadImage.o ReadImageHeader.o WriteImage.o \
-		Threshold.cpp
-	g++ -o Threshold $(CFLAGS) image.o ReadImage.o ReadImageHeader.o \
-					WriteImage.o Threshold.cpp
+		Sampling.cpp
+	g++ -o Sampling $(CFLAGS) image.o ReadImage.o ReadImageHeader.o \
+					WriteImage.o Sampling.cpp
