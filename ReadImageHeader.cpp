@@ -13,7 +13,7 @@ int readImageHeader(char fname[], int& N, int& M, int& Q, bool& type)
  char header [100], *ptr;
  ifstream ifp;
 
- ifp.open(fname, ios::in | ios::binary);
+ ifp.open("lenna.pgm", ios::in | ios::binary);
 
  if (!ifp) {
    cout << "Can't read image: " << fname << endl;

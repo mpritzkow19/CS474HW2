@@ -9,10 +9,11 @@ int readImageHeader(char[], int&, int&, int&, bool&);
 int readImage(char[], ImageType&);
 int writeImage(char[], ImageType&);
 
-int main//(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 
-cin >> char * argv[];
+//char * argv = new char[30];
+//cin >> argv;
 
  int i, j;
  int M, N, Q;
