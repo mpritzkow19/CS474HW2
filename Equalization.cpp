@@ -44,12 +44,12 @@ vector<int> newGreyLevel;
       imageData.push_back(val);
     }
 
-//sort the array
+//sort the vector
 sort(imageData.begin(), imageData.end());
 
 //open file
 ofstream fileOutput;
-fileOutput.open("histogramData.txt", ios::out| ios::in);
+fileOutput.open("histogramData.txt", ios::out| ios::trunc);
 
 //Count the frequency of items in the vector
 vector<bool> visited(imageData.size(), false);
@@ -70,11 +70,6 @@ for (int i = 0; i < imageData.size(); i++) {
     frequency.push_back(count);
     oldGreyLevel.push_back(imageData[i]);
   }
-
-//output data in the histogram
-for(int i = 0; i < frequency.size(); i++){
-  //cout << frequency[i] << endl;
-}
 
 //calculate pmf
 for(int i = 0; i < frequency.size(); i++){

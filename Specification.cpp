@@ -14,6 +14,7 @@ int writeImage(char[], ImageType&);
 int main(int argc, char *argv[])
 {
 
+//data for image1
 vector<float> frequency;
 vector<int> imageData;
 vector<float> pmf;
@@ -21,12 +22,16 @@ vector<float> cdf;
 vector<int> oldGreyLevel;
 vector<int> newGreyLevel;
 
+//data for image2
 vector<float> frequency2;
 vector<int> imageData2;
 vector<float> pmf2;
 vector<float> cdf2;
 vector<int> oldGreyLevel2;
 vector<int> newGreyLevel2;
+
+//data for calculating specifcation map
+vector<int> greyValues; //0 to 255
 
  int i, j;
  int M, N, Q;
@@ -137,7 +142,7 @@ for (int i = 0; i < imageData2.size(); i++) {
         }
     }
     //fileOutput << imageData2[i]  << "  " << count2 << endl;
-    frequency2.push_back(count);
+    frequency2.push_back(count2);
     oldGreyLevel2.push_back(imageData2[i]);
   }
 
@@ -165,11 +170,29 @@ for(int i = 0; i < oldGreyLevel2.size(); i++){
   newGreyLevel2.push_back(round(oldGreyLevel2[i] * cdf2[i]));
 }
 
-//mark 0's for any spot in which there is no
+//mark 0's for any spot in which there is no number using custom find function
+//closest number to specified
+//1. populate a vector with values 0-255
+for(int i =0; i <= 255; i++){
+  greyValues.push_back(i);
+}
+
+//2. fill oldGreyLevel and oldGreyLevel2 with 0's for missing spots
+
 
 //Map the two images so that the grey levels are the same:
-//use custom find function that will check all values
-//check 1 to 255
+//find closest value and place zero before
+for(i = 0; i <= 255; i++){
+  while(greyValues[i] != oldGreyLevel[i]){
+    oldGreyLevel.insert(oldGreyLevel.begin()+i, 0);
+
+    break;
+  }
+}
+
+for(int i = 0; i <= oldGreyLevel.size(); i++){
+cout << oldGreyLevel[i] << endl;
+}
 
 
 /*
