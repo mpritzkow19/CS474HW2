@@ -7,6 +7,9 @@
 #include "image.h"
 using namespace std;
 
+//This File will not compile nor will generate results
+/*
+
 int readImageHeader(char[], int&, int&, int&, bool&);
 int readImage(char[], ImageType&);
 int writeImage(char[], ImageType&);
@@ -174,12 +177,12 @@ for(int i = 0; i < oldGreyLevel2.size(); i++){
 //mark 0's for any spot in which there is no number using custom find function
 //closest number to specified
 //1. populate a vector with values 0-255
-/*
+
 mapVector = greyValues;
 for(int i =0; i <= 255; i++){
   greyValues.push_back(i);
 }
-*/
+
 //2. fill oldGreyLevel and oldGreyLevel2 with 0's for missing spots
 
 
@@ -200,7 +203,7 @@ cout << mapVector[i] << endl;
 }
 
 
-/*
+
 //Map new grey levels onto photo
 vector<int>::iterator found;
 for(i=0; i<N; i++)
@@ -214,6 +217,7 @@ for(i=0; i<N; i++)
    }
  // write image
  writeImage(argv[2], image);
-*/
+
  return (1);
 }
+*/
