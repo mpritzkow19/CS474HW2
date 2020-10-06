@@ -35,6 +35,7 @@ int main(int argc, char* argv[])
     // read image
     readImage(argv[1], image);
 
+    //gets input of sample rate from the user on the command line
     cout << "Options for spatial resolution factor: 2, 4, 8" << endl;
     cout << "Enter Spatial Resolution desired: ";
     cin >> spResolution;
@@ -49,18 +50,6 @@ int main(int argc, char* argv[])
         cout << "Invalid input" << endl;
         return 0;
     }
-    /*
-    //sample the Image by taking every other number from every other row
-    for(i=0; i<N; i++)
-      for(j=0; j<M; j++) {
-        image.getPixelVal(i, j, val);
-          if(i % 2 == 0){
-            if(j % 2 == 0){
-              sampleData.push_back(val);
-            }
-          }
-      }
-    */
 
     //desired sub-sampled array size
     int newRow = (N / spResolution);
@@ -74,10 +63,10 @@ int main(int argc, char* argv[])
     cout << "Right before loop starts." << endl;
 
     //for loop that will populate sub-sample with correct values
-    for (int i = 0; i < N; i += spResolution) {
+    for (int i = 0; i < N; i += spResolution) { //used a double for loop in order to iterate properly through array
         for (int j = 0; j < M; j += spResolution) {
             image.getPixelVal(i, j, val);
-            if (b <= newCol)
+            if (b <= newCol) //want to make sure that columns size of sub-sample array doesn't exceed limits (ie 128,64,32)
             {
                 newArr[a][b] = val;
                 cout << "Row: " << a << " Col: " << b << " New val: " << val << endl;
@@ -85,7 +74,7 @@ int main(int argc, char* argv[])
             }
             else
             {
-                if (a <= newRow)
+                if (a <= newRow)    //iterate to a new row once column has been fully explored
                 {
                     a++;
                 }
@@ -98,6 +87,15 @@ int main(int argc, char* argv[])
     cout << "Made it past the for loops" << endl;
     cout << "newRow: " << newRow << endl;
 
+
+    //use another double for loop to display sub-sample array into the picture
+    for (int i = 0; i < newRow; i++)
+    {
+        for (int j = 0; j < newCol; j++)
+        {
+            image.setPixelVal(i, j, newArr[i][j]); //insert correct sub-sample array value in the image
+        }
+    }
     /*
     //resize image by countdown
     int rowCount = spResolution;
@@ -125,20 +123,10 @@ int main(int argc, char* argv[])
         }
       }
     */
-    // threshold image
-   /*
-    for(i=0; i<N; i++)
-      for(j=0; j<M; j++) {
-        image.getPixelVal(i, j, val);
-        if(val < thresh)
-          image.setPixelVal(i, j, 255);
-        else
-          image.setPixelVal(i, j, 0);
-       }
-   */
+   
    // write image
    //writeImage(argv[2], image);
-   //writeImage(newLenna, image);
+   writeImage(newLenna, image);
 
     return (1);
 }
