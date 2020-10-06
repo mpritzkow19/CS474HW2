@@ -51,6 +51,7 @@ sort(imageData.begin(), imageData.end());
 ofstream fileOutput;
 fileOutput.open("histogramData.txt", ios::out| ios::trunc);
 
+
 //Count the frequency of items in the vector
 vector<bool> visited(imageData.size(), false);
 
@@ -70,6 +71,7 @@ for (int i = 0; i < imageData.size(); i++) {
     frequency.push_back(count);
     oldGreyLevel.push_back(imageData[i]);
   }
+fileOutput.close();
 
 //calculate pmf
 for(int i = 0; i < frequency.size(); i++){
@@ -90,6 +92,9 @@ for(int i = 0; i < oldGreyLevel.size(); i++){
   newGreyLevel.push_back(round(oldGreyLevel[i] * cdf[i]));
 }
 
+//ASHKDASDJBLASDJKL
+vector<int> imageEQ;
+
 //Map new grey levels onto photo
 vector<int>::iterator found;
 for(i=0; i<N; i++)
@@ -98,9 +103,43 @@ for(i=0; i<N; i++)
     found = find(oldGreyLevel.begin(), oldGreyLevel.end(), val);
     if(found != oldGreyLevel.end()){
       image.setPixelVal(i, j, newGreyLevel[val]);
+      imageEQ.push_back(newGreyLevel[val]);
     }
 
    }
+
+   //sort the vector
+   sort(imageEQ.begin(), imageEQ.end());
+
+   //NKANFKJSDHFKJLDBISPGVBUISDBVDSVHIUSDBVISDBVISDBFISDOFGISDUFGSDFSDIUOFGISDU
+   vector<float> frequency2;
+   //open file
+   //ofstream fileOutput;
+   fileOutput.open("histogramEQ.txt", ios::out| ios::trunc);
+
+
+   //Count the frequency of items in the vector
+   vector<bool> visited2(imageEQ.size(), false);
+
+   for (int i = 0; i < imageEQ.size(); i++) {
+
+       if (visited2[i] == true)
+           continue;
+
+       int count2 = 1;
+       for (int j = i + 1; j < imageEQ.size(); j++) {
+           if (imageEQ[i] == imageEQ[j]) {
+               visited2[j] = true;
+               count2++;
+           }
+       }
+       fileOutput << imageEQ[i]  << "  " << count2 << endl;
+       //frequency2.push_back(count);
+       //oldGreyLevel.push_back(imageEQ[i]);
+     }
+   fileOutput.close();
+
+
  // write image
  writeImage(argv[2], image);
 

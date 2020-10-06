@@ -13,6 +13,6 @@ image.o:	image.h image.cpp
 	g++ -c $(CFLAGS) image.cpp
 
 all:	image.h image.o ReadImage.o ReadImageHeader.o WriteImage.o \
-		Specification.cpp
-	g++ -o Specification $(CFLAGS) image.o ReadImage.o ReadImageHeader.o \
-					WriteImage.o Specification.cpp
+		Equalization.cpp
+	g++ -o Equalization $(CFLAGS) image.o ReadImage.o ReadImageHeader.o \
+					WriteImage.o Equalization.cpp

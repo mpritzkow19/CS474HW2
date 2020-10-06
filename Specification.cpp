@@ -21,6 +21,7 @@ vector<float> pmf;
 vector<float> cdf;
 vector<int> oldGreyLevel;
 vector<int> newGreyLevel;
+vector<int>mapVector;
 
 //data for image2
 vector<float> frequency2;
@@ -173,25 +174,29 @@ for(int i = 0; i < oldGreyLevel2.size(); i++){
 //mark 0's for any spot in which there is no number using custom find function
 //closest number to specified
 //1. populate a vector with values 0-255
+/*
+mapVector = greyValues;
 for(int i =0; i <= 255; i++){
   greyValues.push_back(i);
 }
-
+*/
 //2. fill oldGreyLevel and oldGreyLevel2 with 0's for missing spots
 
 
 //Map the two images so that the grey levels are the same:
 //find closest value and place zero before
+vector<int>::iterator found;
 for(i = 0; i <= 255; i++){
-  while(greyValues[i] != oldGreyLevel[i]){
-    oldGreyLevel.insert(oldGreyLevel.begin()+i, 0);
-
-    break;
+  found = find(oldGreyLevel.begin(), oldGreyLevel.end(), i);
+  if(found == oldGreyLevel.end()){
+    mapVector.push_back(0);
+  }else{
+    mapVector.push_back(i);
   }
 }
 
-for(int i = 0; i <= oldGreyLevel.size(); i++){
-cout << oldGreyLevel[i] << endl;
+for(int i = 0; i < mapVector.size(); i++){
+cout << mapVector[i] << endl;
 }
 
 
