@@ -34,7 +34,7 @@ int writeImage(char[], ImageType&);
  return vecMed(temp);
 }*/
 
-int vecMed(vector<int> in){
+/*int vecMed(vector<int> in){
  size_t size = in.size();
  
  sort(in.begin(), in.end());
@@ -42,7 +42,7 @@ int vecMed(vector<int> in){
 	return(in[size / 2 - 1] + in[size / 2]) / 2;
  else
  	return(in[size / 2]);
-}
+}*/
 
 int main(int argc, char *argv[])
 {
@@ -51,19 +51,21 @@ int main(int argc, char *argv[])
  bool type;
  int val;
  int qValue;
- vector<int> values;
+ vector<int> unsharp;
 
  // read image header
- readImageHeader("saltBoatHalf.pgm", N, M, Q, type);
+ //readImageHeader("unsharpLenna.pgm", N, M, Q, type);
+ readImageHeader("lenna.pgm", N, M, Q, type);
 
  // allocate memory for the image array
 
  ImageType image(N, M, Q);
 
- char imageName[]= "saltBoatHalf.pgm";
+ //char imageName[]= "unsharpLenna.pgm";
+ char imageName[]= "lenna.pgm";
  readImage(imageName, image);
 
- //variables for median filter size
+ /*//variables for median filter size
  int nPar;
  int mPar;
 
@@ -74,7 +76,7 @@ int main(int argc, char *argv[])
  cin >> mPar;
 
  int half = (N*M)/2;
- 
+ */
  //salt the image
  /*int bOW = 2;
  for(int m = 0; m < half; m++)
@@ -95,15 +97,15 @@ int main(int argc, char *argv[])
  for(int i = 0; i < N; i++){
   for(int j = 0; j < M; j++){
 	image.getPixelVal(i, j, val);
-	values.push_back(val);
+	unsharp.push_back(val);
   }
  }
 
- cout << "Size: " << values.size() << endl;
+ /*cout << "Size: " << values.size() << endl;
  int maskSize = nPar * mPar;
  int placeholder = 0;
  
- /*//while(placeholder != values.size()){
+ while(placeholder != values.size()){
   vector<int> maskVals;
  for(int i = placeholder; i < maskSize; i++){
    maskVals[i] = values[i];
@@ -139,8 +141,37 @@ int main(int argc, char *argv[])
   }
  }*/
 
+ // read image header
+ readImageHeader("lenna.pgm", N, M, Q, type);
+
+ // allocate memory for the image array
+
+ ImageType image2(N, M, Q);
+
+ char imageName2[]= "lenna.pgm";
+ readImage(imageName2, image2);
+
+ vector<int> original;
+
+ for(int i = 0; i < N; i++){
+  for(int j = 0; j < M; j++){
+	image2.getPixelVal(i, j, val);
+	original.push_back(val);
+  }
+ }
+
+ int A = 5;
+ vector<int> highBoost;
+
+ for(int i = 0; i < N; i++){
+  for(int j = 0; j < M; j++){
+	//highBoost[i][j] = ((A-1)(original[i][j]) + (unsharp[[i][j]));
+	//image2.setPixelVal(i, j, highBoost[i][j];
+  }
+ }
+
  // write image
- writeImage("medianLenna.pgm", image);
+ writeImage("highBoostLenna.pgm", image2);
 
  return (1);
 }
