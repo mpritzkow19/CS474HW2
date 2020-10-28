@@ -13,10 +13,12 @@ image.o:	image.h image.cpp
 	g++ -c $(CFLAGS) image.cpp
 
 all:	image.h image.o ReadImage.o ReadImageHeader.o WriteImage.o \
-		Equalization.cpp Quantization.cpp Sampling.cpp
-	g++ -o Equalization $(CFLAGS) image.o ReadImage.o ReadImageHeader.o \
-					WriteImage.o Equalization.cpp
-	g++ -o Quantization $(CFLAGS) image.o ReadImage.o ReadImageHeader.o \
-					WriteImage.o Quantization.cpp
-	g++ -o Sampling $(CFLAGS) image.o ReadImage.o ReadImageHeader.o \
-					WriteImage.o Sampling.cpp
+	Combo.cpp Gaussian.cpp Mean.cpp Laplacian.cpp
+	g++ -o Combo $(CFLAGS) image.o ReadImage.o ReadImageHeader.o \
+					WriteImage.o Combo.cpp
+	g++ -o Gaussian $(CFLAGS) image.o ReadImage.o ReadImageHeader.o \
+					WriteImage.o Gaussian.cpp
+	g++ -o Mean $(CFLAGS) image.o ReadImage.o ReadImageHeader.o \
+					WriteImage.o Mean.cpp
+	g++ -o Laplacian $(CFLAGS) image.o ReadImage.o ReadImageHeader.o \
+					WriteImage.o Laplacian.cpp
